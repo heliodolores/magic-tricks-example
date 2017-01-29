@@ -1,0 +1,292 @@
+/* 
+I'm using these amazing project for the cards: 
+https://sourceforge.net/projects/vector-cards/
+licensed under LPGL 3.0.
+*/
+
+
+/* CARDS CSS */ 
+.card {
+  position: relative;
+  width: 3.875rem;
+  height: 5.5rem;
+  background-color: #fff;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  cursor: default;
+}
+.card:before,
+.card:after {
+  position: absolute;
+  font-size: 0.7rem;
+  text-align: center;
+  line-height: 0.7rem;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  white-space: pre-line;
+  width: 0.55rem;
+  letter-spacing: -0.1rem;
+}
+.card:before {
+  top: 0.15rem;
+  left: 0;
+}
+.card:after {
+  bottom: 0.1rem;
+  right: 0;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.card .face {
+  height: 100%;
+  background-position: 50% 50%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.card.spades,
+.card.clubs,
+.card.joker {
+  color: #000;
+}
+.card.hearts,
+.card.diamonds,
+.card.joker.rank3 {
+  color: #d40000;
+}
+.card.joker.rank1:before,
+.card.joker.rank2:before,
+.card.joker.rank3:before,
+.card.joker.rank1:after,
+.card.joker.rank2:after,
+.card.joker.rank3:after {
+  content: "J\a O\a K\a E\a R";
+  letter-spacing: 0;
+  font-size: 0.4rem;
+  line-height: 0.4rem;
+  padding: 0.15rem 0.05rem;
+  width: 0.5rem;
+}
+.card.rank1:before,
+.card.rank1:after {
+  content: "A";
+}
+.card.rank2:before,
+.card.rank2:after {
+  content: "2";
+}
+.card.rank3:before,
+.card.rank3:after {
+  content: "3";
+}
+.card.rank4:before,
+.card.rank4:after {
+  content: "4";
+}
+.card.rank5:before,
+.card.rank5:after {
+  content: "5";
+}
+.card.rank6:before,
+.card.rank6:after {
+  content: "6";
+}
+.card.rank7:before,
+.card.rank7:after {
+  content: "7";
+}
+.card.rank8:before,
+.card.rank8:after {
+  content: "8";
+}
+.card.rank9:before,
+.card.rank9:after {
+  content: "9";
+}
+.card.rank10:before,
+.card.rank10:after {
+  content: "10";
+}
+.card.rank11:before,
+.card.rank11:after {
+  content: "J";
+}
+.card.rank12:before,
+.card.rank12:after {
+  content: "Q";
+}
+.card.rank13:before,
+.card.rank13:after {
+  content: "K";
+}
+.card.spades.rank1 .face {
+  background-image: url(../img/CardTricks.Image1.svg?p5iV0PO4DhkqfZSVJ_xnwA);
+}
+.card.spades.rank2 .face {
+  background-image: url(../img/CardTricks.Image2.svg?tX3Khau_Bjlaa4Gq7WIBSg);
+}
+.card.spades.rank3 .face {
+  background-image: url(../img/CardTricks.Image3.svg?L_7OEjYQEQffoukjxrif4Q);
+}
+.card.spades.rank4 .face {
+  background-image: url(../img/CardTricks.Image4.svg?GCxdBawW2lG9Pp7OEFTtrQ);
+}
+.card.spades.rank5 .face {
+  background-image: url(../img/CardTricks.Image5.svg?s0DrFRIEYUs9GCGzK+Kd4g);
+}
+.card.spades.rank6 .face {
+  background-image: url(../img/CardTricks.Image6.svg?nXAw6fUxtBK5Z_eZuoIkaA);
+}
+.card.spades.rank7 .face {
+  background-image: url(../img/CardTricks.Image7.svg?rt+mfkdwLkg__neYW4Q+LQ);
+}
+.card.spades.rank8 .face {
+  background-image: url(../img/CardTricks.Image8.svg?da6Ba8nKhQy_rfYEM4QKQA);
+}
+.card.spades.rank9 .face {
+  background-image: url(../img/CardTricks.Image9.svg?H0Ffb+NR_nFz1AN_HojGtQ);
+}
+.card.spades.rank10 .face {
+  background-image: url(../img/CardTricks.Image10.svg?E8lcTVjOmeUY5uT5WrtOCw);
+}
+.card.spades.rank11 .face {
+  background-image: url(../img/CardTricks.Image11.svg?jVjgReoR8rL7UHrz7Qfe8g);
+}
+.card.spades.rank12 .face {
+  background-image: url(../img/CardTricks.Image12.svg?2rtjg7Y0opH+lhfRBjiS9A);
+}
+.card.spades.rank13 .face {
+  background-image: url(../img/CardTricks.Image13.svg?PSLYTTBoi8wE1sJ4uZHqvA);
+}
+.card.hearts.rank1 .face {
+  background-image: url(../img/CardTricks.Image14.svg?pv8kvbfLIJ8h6vKlaSbTCQ);
+}
+.card.hearts.rank2 .face {
+  background-image: url(../img/CardTricks.Image15.svg?sKKsAeqJ2UPitMDXcJ8rug);
+}
+.card.hearts.rank3 .face {
+  background-image: url(../img/CardTricks.Image16.svg?ToXwinliUXcddKX95_tCPg);
+}
+.card.hearts.rank4 .face {
+  background-image: url(../img/CardTricks.Image17.svg?3tj74txx_3ajV15XZQuxCA);
+}
+.card.hearts.rank5 .face {
+  background-image: url(../img/CardTricks.Image18.svg?99wEEzbk51yXIOfeaHw8+A);
+}
+.card.hearts.rank6 .face {
+  background-image: url(../img/CardTricks.Image19.svg?JNo8itDuc7echOAYSlKkug);
+}
+.card.hearts.rank7 .face {
+  background-image: url(../img/CardTricks.Image20.svg?181OK2JE9gvLjn6uS9dfJQ);
+}
+.card.hearts.rank8 .face {
+  background-image: url(../img/CardTricks.Image21.svg?JJ76L68SUV8G6AcrfuPD5Q);
+}
+.card.hearts.rank9 .face {
+  background-image: url(../img/CardTricks.Image22.svg?7K6faBumUSWQYu4U_lvZ4w);
+}
+.card.hearts.rank10 .face {
+  background-image: url(../img/CardTricks.Image23.svg?KuQ4aguWm9gTFv4Flb9Ybg);
+}
+.card.hearts.rank11 .face {
+  background-image: url(../img/CardTricks.Image24.svg?FjSplY4Kg+TV7VfP9Y7sBQ);
+}
+.card.hearts.rank12 .face {
+  background-image: url(../img/CardTricks.Image25.svg?lOCaZYRJajZivYHuGcuOXg);
+}
+.card.hearts.rank13 .face {
+  background-image: url(../img/CardTricks.Image26.svg?zU51xCiMbpqzv8tB45l86w);
+}
+.card.clubs.rank1 .face {
+  background-image: url(../img/CardTricks.Image27.svg?zS3+cf_apETBcsYdni9trg);
+}
+.card.clubs.rank2 .face {
+  background-image: url(../img/CardTricks.Image28.svg?8hSUVqIl3aIgpY35j6xd2Q);
+}
+.card.clubs.rank3 .face {
+  background-image: url(../img/CardTricks.Image29.svg?o+uyrloonqK9krmcn7q1Eg);
+}
+.card.clubs.rank4 .face {
+  background-image: url(../img/CardTricks.Image30.svg?g7rJiUPuKuzZDCplLqtL6g);
+}
+.card.clubs.rank5 .face {
+  background-image: url(../img/CardTricks.Image31.svg?Jhj6bTn7KAsJA47gidfrAQ);
+}
+.card.clubs.rank6 .face {
+  background-image: url(../img/CardTricks.Image32.svg?KDVlZJmeHEF2EzYU0ly1RQ);
+}
+.card.clubs.rank7 .face {
+  background-image: url(../img/CardTricks.Image33.svg?nUfk0YR0HZkVrrcpCxMf2Q);
+}
+.card.clubs.rank8 .face {
+  background-image: url(../img/CardTricks.Image34.svg?GIvBfmjnnw05w7aE6SKhYA);
+}
+.card.clubs.rank9 .face {
+  background-image: url(../img/CardTricks.Image35.svg?tP_VXc_puN3vNAfw6VIy_w);
+}
+.card.clubs.rank10 .face {
+  background-image: url(../img/CardTricks.Image36.svg?EXhgvot5dUD7PSqASdPMOw);
+}
+.card.clubs.rank11 .face {
+  background-image: url(../img/CardTricks.Image37.svg?wd5XBfnyu1qBYN11mASAWQ);
+}
+.card.clubs.rank12 .face {
+  background-image: url(../img/CardTricks.Image38.svg?AXtRFoIdG1nT5D9x0na2Kw);
+}
+.card.clubs.rank13 .face {
+  background-image: url(../img/CardTricks.Image39.svg?sZjYjFMfiVbNUGzPCKWKkg);
+}
+.card.diamonds.rank1 .face {
+  background-image: url(../img/CardTricks.Image40.svg?XQ7HXpfXRAbpczlRruAGhA);
+}
+.card.diamonds.rank2 .face {
+  background-image: url(../img/CardTricks.Image41.svg?X1uF3xXdSj8HY47bwWPXRA);
+}
+.card.diamonds.rank3 .face {
+  background-image: url(../img/CardTricks.Image42.svg?R8qqJolanE7v_AD_jmKuNw);
+}
+.card.diamonds.rank4 .face {
+  background-image: url(../img/CardTricks.Image43.svg?rGPkphTxfKXitOKBV4QaOw);
+}
+.card.diamonds.rank5 .face {
+  background-image: url(../img/CardTricks.Image44.svg?l03EXLihx_MoZkDDTxy8ZA);
+}
+.card.diamonds.rank6 .face {
+  background-image: url(../img/CardTricks.Image45.svg?NtBGqCa_RYIRO0sd4hf5wg);
+}
+.card.diamonds.rank7 .face {
+  background-image: url(../img/CardTricks.Image46.svg?9Wvk4KDVBTGFc7W6+T5qmA);
+}
+.card.diamonds.rank8 .face {
+  background-image: url(../img/CardTricks.Image47.svg?O4JjdExpSaMvlHlfUIWllA);
+}
+.card.diamonds.rank9 .face {
+  background-image: url(../img/CardTricks.Image48.svg?ZioRLIa4tecj5qByjBcGsA);
+}
+.card.diamonds.rank10 .face {
+  background-image: url(../img/CardTricks.Image49.svg?Q3aDXFSNLsn3Vz1IvD28iQ);
+}
+.card.diamonds.rank11 .face {
+  background-image: url(../img/CardTricks.Image50.svg?pKKnXTm7FWqOqiM+oPby5g);
+}
+.card.diamonds.rank12 .face {
+  background-image: url(../img/CardTricks.Image51.svg?iUbLJv+14ehRQD6q49mLtg);
+}
+.card.diamonds.rank13 .face {
+  background-image: url(../img/CardTricks.Image52.svg?KjXrC6kii0P4G4KP4UypVA);
+}
+.card.joker.rank1 .face {
+  background-image: url(../img/CardTricks.Image53.svg?bnkSn8r+LNDpKkanzFZbgA);
+}
+.card.joker.rank2 .face {
+  background-image: url(../img/CardTricks.Image54.svg?foARJuqJW9MPPasWn3f8lQ);
+}
+.card.joker.rank3 .face {
+  background-image: url(../img/CardTricks.Image55.svg?vZERWWDLklFBMEiNdInbJw);
+}
