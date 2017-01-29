@@ -2,7 +2,7 @@ var cards = [];
 var idCounter = 0;
 var socket = null;
 var serverURL = window.location.hostname + ":" +  window.location.port;
-var sessionGuid = window.location.search.substring(6);
+var tableId = window.location.search.substring(4);
 var compassDiscount = 0;
 var compassDir = 0;
 var compassAttached = false; 
@@ -15,7 +15,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
     // connect to websocket server
     socket = io.connect(serverURL);
-    socket.emit('phone-connect', sessionGuid);   
+    socket.emit('phone-connect', tableId);   
 
     // init touch events
     var elem = document.getElementById("touchHandler");
@@ -40,7 +40,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
     }
 
     setInterval(function() {
-        socket.emit("phone-move", { guid: sessionGuid, angle: getCompassDirection() });
+        socket.emit("phone-move", { tableId: tableId, angle: getCompassDirection() });
     }, 500);
 
 }, false );
@@ -84,7 +84,7 @@ function removeCard(id, strength) {
         addCard();
 
         var direction = getCompassDirection();
-        socket.emit('phone-throw-card', { guid: sessionGuid,  suit: card.suit, rank: card.rank, angle: direction, strength: strength });
+        socket.emit('phone-throw-card', { tableId: tableId,  suit: card.suit, rank: card.rank, angle: direction, strength: strength });
     }, 500);
 }
 

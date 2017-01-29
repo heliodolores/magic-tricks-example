@@ -5,6 +5,7 @@ var PATH = require('path');
 var IO = require('socket.io');
 var MOBILE_DETECT = require('mobile-detect');
 
+
 // Create a simple web server for both pages (deck and table)
 var server = HTTP.createServer(function (request, response) {
 
@@ -58,16 +59,17 @@ var realtimeListener = IO.listen(server);
 var tableSockets = {};
 
 realtimeListener.on('connection', function (socket) {
-  
+
     // receives a connect message from the card table
-    socket.on("table-connect", function (guid) {
+    socket.on("table-connect", function (tableId) {
         // ...  and stores the card table socket
-        tableSockets[guid] = socket;
+        tableSockets[tableId] = socket;
+        socket.tableId = tableId;
     });
 
     // receives a connect message from a phone
-    socket.on("phone-connect", function (guid) {
-        var tableSocket = tableSockets[guid];
+    socket.on("phone-connect", function (tableId) {
+        var tableSocket = tableSockets[tableId];
         if (tableSocket) {
             // ... informs table that a phone has connected
             tableSocket.emit('phone-connect');
@@ -76,7 +78,7 @@ realtimeListener.on('connection', function (socket) {
 
     // receives a move from a phone
     socket.on('phone-move', function (data) {
-        var tableSocket = tableSockets[data.guid];
+        var tableSocket = tableSockets[data.tableId];
         if (tableSocket) {
             // ... and forwards the current angle to the card table
             tableSocket.emit('phone-move', data.angle);
@@ -85,10 +87,19 @@ realtimeListener.on('connection', function (socket) {
 
     // receives a throw card message from a phone
     socket.on('phone-throw-card', function (data) {
-        var tableSocket = tableSockets[data.guid];
+        var tableSocket = tableSockets[data.tableId];
         if (tableSocket) {
             // ... and forwards the data to the card table
             tableSocket.emit('phone-throw-card', data);
+        }
+    });
+
+    // device disconnected
+    socket.on('disconnect', function () {
+        // if it's a table
+        if(socket.tableId) {
+            // remove table socket
+            delete tableSockets[socket.tableId];
         }
     });
 });

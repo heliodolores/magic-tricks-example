@@ -1,13 +1,13 @@
 // CHANGE THE SERVER URL
 var serverURL = "192.168.1.111:8080";
-var sessionGuid = generateUUID();
+var tableId = generateID();
 var idCounter = 0;
 
 // connect to websocket server
 var socket = io.connect(serverURL);
 
 // register card table socket right after the connection is established
-socket.emit('table-connect', sessionGuid);
+socket.emit('table-connect', tableId);
 
 // call callback when phone moves
 socket.on('phone-move', phoneMoved);
@@ -54,7 +54,9 @@ function addCard(id, angle, suit, rank) {
 
 document.addEventListener( 'DOMContentLoaded', function () {
     // on ready set the qr code
-    qrCodeGenerator("http://" + serverURL + "/?guid=" + sessionGuid, "placeholder");
+    qrCodeGenerator("http://" + serverURL + "/?id=" + tableId, "placeholder");
+    // and the alternative URL
+    document.getElementById("url").innerHTML = "Scan qrcode or go to http://" + serverURL + "/?id=" + tableId;
 }, false );
 
 function qrCodeGenerator(value, elementid) {
@@ -64,12 +66,12 @@ function qrCodeGenerator(value, elementid) {
     document.getElementById(elementid).innerHTML = qr.createImgTag(3,12);
 }
 
-function generateUUID(){
+function generateID(){
     var d = new Date().getTime();
     if(window.performance && typeof window.performance.now === "function"){
         d += performance.now(); //use high-precision timer if available
     }
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var uuid = 'xxxxx'.replace(/[xy]/g, function(c) {
         var r = (d + Math.random()*16)%16 | 0;
         d = Math.floor(d/16);
         return (c=='x' ? r : (r&0x3|0x8)).toString(16);
