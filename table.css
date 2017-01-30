@@ -18,11 +18,13 @@
     position: absolute;
     bottom: -120vh;
     left: 50%;
+    margin-left: -1.9rem;
 }
 
 .path.phone {
     background-color: rgba(255,255,255,0.3);
     width: 1px;
+    margin-left: 0px;
 }
 
 /* AUX CSS */
@@ -57,7 +59,7 @@ body {
   font-size: 18px;
   left: 50%;
   top: 50%;
-  margin-left: -150px;
+  margin-left: -200px;
   margin-top: -150px;
   text-align: center;
   border-radius: 20px;
