@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background-image: url(hand.png);
+    background-image: url(/img/hand.png);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
