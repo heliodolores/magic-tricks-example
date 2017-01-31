@@ -25,4 +25,3 @@ License
 
 MIT - Some dependencies have different licenses (e.g. the card images)
 
-
