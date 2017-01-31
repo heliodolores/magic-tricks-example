@@ -10,9 +10,13 @@
         <script type="text/javascript" src="gestures.js"></script>
     </head>
     <body>
-        <div class="waiting-for-calibration" onclick="calibrate()">
-            <div>Stand 90° to the table</div>
-            <div>Touch to start</div>
+        <div id="waiting-for-calibration" onclick="calibrate()">
+            <div class="section">
+                <span>Point the device 90° <br> to the table bottom</span>
+            </div>
+            <div class="section">
+                <span>Touch to Start</span>
+            </div>
         </div>
         <div id="touchHandler"></div>
     </body>

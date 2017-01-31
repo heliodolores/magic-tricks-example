@@ -1,30 +1,45 @@
-// CHANGE THE SERVER URL
-var serverURL = "172.16.17.19:8080";
+// CHANGE THE SERVER URL WITH INTERNAL NETWORK PUBLIC ADDRESS
+var serverURL = "192.168.1.111:8080";
 var tableId = generateID();
 var idCounter = 0;
 
-// connect to websocket server
-var socket = io.connect(serverURL);
 
-// register card table socket right after the connection is established
-socket.emit('table-connect', tableId);
+// on ready
+document.addEventListener( 'DOMContentLoaded', function () {
 
-// call callback when phone moves
-socket.on('phone-move', phoneMoved);
+    // connect to websocket server
+    var socket = io.connect(serverURL);
 
-// call callback when a card arrives
-socket.on('phone-throw-card', throwCard);
+    // register card table socket
+    socket.emit('table-connect', tableId);
 
-// call callback when phone connects
-socket.on('phone-connect', phoneConnected);
+    // listen to phone movements
+    socket.on('phone-move', phoneMoved);
+
+    // listen to phone connections
+    socket.on('phone-connect', phoneConnected);
+
+    // listen to card arrivals
+    socket.on('phone-throw-card', throwCard);
+
+    // set the qrcode
+    qrCodeGenerator("http://" + serverURL + "/?id=" + tableId, "placeholder");
+
+    // and the URL
+    document.getElementById("url").innerHTML = "http://" + serverURL + "/?id=" + tableId;
+
+}, false);
+
+
+// CALLBACK FUNCTIONS
 
 function phoneMoved(angle) {
-    var path = document.querySelector(".path.phone");
+    // change angle of the phone direction indicator
+    var path = document.querySelector("#phone-move.path");
     path.style = `transform: rotate(${angle}deg)`;
 }
 
 function throwCard(card) {
-    console.log("received " + card);
     // add card to table
     var cardid = "card" + idCounter++;
     addCard(cardid, card.angle, card.suit, card.rank);    
@@ -40,10 +55,15 @@ function throwCard(card) {
 }
 
 function phoneConnected() {
+    // remove banner when a phone connects
     document.getElementById("waiting-for-device").remove();
 }
 
+
+// AUX METHODS
+
 function addCard(id, angle, suit, rank) {
+    // inject card html to the page body
     document.body.innerHTML += 
         `<div class="path" style="transform: rotate(${angle}deg)">
             <div id="${id}" class="card ${suit} rank${rank}">
@@ -52,24 +72,19 @@ function addCard(id, angle, suit, rank) {
         </div>`;
 }
 
-document.addEventListener( 'DOMContentLoaded', function () {
-    // on ready set the qr code
-    qrCodeGenerator("http://" + serverURL + "/?id=" + tableId, "placeholder");
-    // and the alternative URL
-    document.getElementById("url").innerHTML = "Scan qrcode or go to http://" + serverURL + "/?id=" + tableId;
-}, false );
-
 function qrCodeGenerator(value, elementid) {
+    // generates a qrcode based on a value inside an html element
     var qr = qrcode(4, 'L');
     qr.addData(value);
     qr.make();
-    document.getElementById(elementid).innerHTML = qr.createImgTag(3,12);
+    document.getElementById(elementid).innerHTML = qr.createImgTag(4,16);
 }
 
 function generateID(){
+    // generate random 5 character id for the session
     var d = new Date().getTime();
     if(window.performance && typeof window.performance.now === "function"){
-        d += performance.now(); //use high-precision timer if available
+        d += performance.now();
     }
     var uuid = 'xxxxx'.replace(/[xy]/g, function(c) {
         var r = (d + Math.random()*16)%16 | 0;
