@@ -1,8 +1,7 @@
 # magic-tricks-example
 
-![N|Solid](https://media.giphy.com/media/l3q2B0px8C3qZ4ouI/source.gif)
-
 Demo code for the following Medium article (click image bellow):
+
 [![N|Solid](http://res.cloudinary.com/dzqowkhxu/image/upload/v1484735594/medium-png_hmcjft.png)](https://medium.com/outsystems-engineering/making-magic-with-websockets-and-css3-ec22c1dcc8a8)
 
 ### Installation
