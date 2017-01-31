@@ -23,6 +23,6 @@ Open `http://<your_computer_ip>:<your_port>` in the browser and follow the instr
 License
 ----
 
-MIT (Some dependencies have different licenses (e.g. the card images)
+MIT - Some dependencies have different licenses (e.g. the card images)
 
 
