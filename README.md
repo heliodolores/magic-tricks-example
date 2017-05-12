@@ -7,7 +7,7 @@ Demo code for the following Medium article (click image bellow):
 ### Installation
 This demo requires [Node.js](https://nodejs.org/) to run.
 
-Open the `table.js` file and update the IP address (and the port) to your computer's internal network address.
+This Demo will try to open the browser in you internal IP address, your device should be on the same internal network for the Demo to work.
 
 Install the dependencies and start the server.
 

@@ -1,5 +1,5 @@
 // CHANGE THE SERVER URL WITH INTERNAL NETWORK PUBLIC ADDRESS
-var serverURL = "172.16.17.19:8080";
+var serverURL = window.location.host;
 var tableId = generateID();
 var idCounter = 0;
 

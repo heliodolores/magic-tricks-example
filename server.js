@@ -5,6 +5,7 @@ var PATH = require('path');
 var IO = require('socket.io');
 var MOBILE_DETECT = require('mobile-detect');
 var OPEN = require('open');
+var OS = require('os');
 
 // Create a simple web server for both pages (deck and table)
 var server = HTTP.createServer(function (request, response) {
@@ -104,5 +105,25 @@ realtimeListener.on('connection', function (socket) {
     });
 });
 
-OPEN('http://localhost:8080');
+// Get all internal IP addresses and open the Demo with that IP
+
+var interfaces = OS.networkInterfaces();
+var addresses = [];
+for (var k in interfaces) {
+    for (var k2 in interfaces[k]) {
+        var address = interfaces[k][k2];
+        if (address.family === 'IPv4' && !address.internal) {
+            addresses.push(address.address);
+            console.log("Found internal IP address: " + address.address);
+        }
+    }
+}
+
+console.log('Opening: http://' + addresses.sort()[0] + ':8080');
+
+// Open Demo on default browser:
+
+OPEN('http://' + addresses.sort()[0] + ':8080');
+
+
 
