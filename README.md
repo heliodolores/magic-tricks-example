@@ -17,7 +17,7 @@ $ npm install
 $ npm start
 ```
 
-Open `http://<your_computer_ip>:<your_port>` in the browser and follow the instructions to open the deck of cards on your phone. 
+Follow the instructions to open and calibrate the deck of cards on your phone. 
 
 
 License
