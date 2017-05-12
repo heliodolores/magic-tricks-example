@@ -3,7 +3,6 @@ var HTTP = require('http');
 var FS = require('fs');
 var PATH = require('path');
 var IO = require('socket.io');
-var MOBILE_DETECT = require('mobile-detect');
 var OPEN = require('open');
 var OS = require('os');
 
@@ -14,8 +13,7 @@ var server = HTTP.createServer(function (request, response) {
     var filePath = '.' + request.url;
 
     if (request.url === '/' || request.url.startsWith('/?')) {
-        var md = new MOBILE_DETECT(request.headers['user-agent']);
-        filePath = './' + (md.phone() ? 'deck.html' : 'table.html');
+        filePath = './' + (request.url.startsWith('/?') ? 'deck.html' : 'table.html');
     }
 
     // Handle different file requests (just the required for this demo)
