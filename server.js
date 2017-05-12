@@ -4,7 +4,7 @@ var FS = require('fs');
 var PATH = require('path');
 var IO = require('socket.io');
 var MOBILE_DETECT = require('mobile-detect');
-
+var OPEN = require('open');
 
 // Create a simple web server for both pages (deck and table)
 var server = HTTP.createServer(function (request, response) {
@@ -103,3 +103,6 @@ realtimeListener.on('connection', function (socket) {
         }
     });
 });
+
+OPEN('http://localhost:8080');
+
