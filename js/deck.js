@@ -23,32 +23,34 @@ document.addEventListener( 'DOMContentLoaded', function () {
     var touchTrack = new TouchTrack();
     touchTrack.init(document.getElementById("touchHandler"), touchStart, touchMove, touchEnd);
 
-    // init compass data
-    if(!isCompassAttached) {
+    // Obtain a new *world-oriented* Full Tilt JS DeviceOrientation Promise
+    var promise = FULLTILT.getDeviceOrientation({ 'type': 'world' });
 
-        // if device has the touch orientation plugin
-        if (window.DeviceOrientationEvent) {
+    // Wait for Promise result
+    promise.then(function(deviceOrientation) { // Device Orientation Events are supported
 
-            // Listen for the deviceorientation event and handle the raw data
-            window.addEventListener('deviceorientation', function(event) {
-                if(event.webkitCompassHeading) { // iphone needs this
-                    compassDirection = event.webkitCompassHeading;  
-                } else { 
-                    compassDirection = event.alpha;
-                }
-            });
-        }
-        isCompassAttached = true;
-    }
+        // Register a callback to run every time a new 
+        // deviceorientation event is fired by the browser.
+        deviceOrientation.listen(function() {
 
-    // ... and update phone direction each 500 ms
+            // Get the current *screen-adjusted* device orientation angles
+            var currentOrientation = deviceOrientation.getScreenAdjustedEuler();
+
+            // Calculate the current compass heading that the user is 'looking at' (in degrees)
+            compassDirection = (180 - currentOrientation.alpha)*2;
+
+        });
+
+    }).catch(function(errorMessage) { // Device Orientation Events are not supported
+        console.log(errorMessage);
+    });
+
+    // ... and update phone direction each 100 ms
     setInterval(function() {
         socket.emit("phone-move", { tableId: tableId, angle: getCompassDirection() });
-    }, 500);
+    }, 100);
 
 }, false);
-
-
 
 // CARD FUNCTIONS
 
